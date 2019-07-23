@@ -4,6 +4,8 @@ window.addEventListener('load', () => {
     let temperatureDescription = document.querySelector(".temperature-description");
     let temperatureDegree = document.querySelector(".temperature-degree");
     let locationTimezeone = document.querySelector(".location-timezone");
+    let temperatureSection = document.querySelector(".temperature");
+    let temperatureUnit = document.querySelector(".temperature span");
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
@@ -18,15 +20,36 @@ window.addEventListener('load', () => {
                 return response.json();
             }).then(data => {
                 console.log(data);
-                const {temperature, summary} = data.currently;
+                const {temperature, summary, icon} = data.currently;
 
                 // Set DOM elements from API
-                temperatureDegree.textContent = temperature;
+                let farenheit = Math.round(temperature * 10) / 10;
+                temperatureDegree.textContent = farenheit;
                 temperatureDescription.textContent = summary;
-                locationTimezeone.textContent = data.timezone;
+                locationTimezeone.textContent = data.timezone.replace("_", "");
+
+                setIcons(icon, document.querySelector(".icon"));
+
+                let celsius = (temperature - 32) * (5/9);
+                temperatureSection.addEventListener("click", () => {
+                    if (temperatureUnit.textContent === "F") {
+                        temperatureUnit.textContent = "C";
+                        temperatureDegree.textContent = Math.round(celsius * 10) / 10;
+                    } else {
+                        temperatureUnit.textContent = "F";
+                        temperatureDegree.textContent = farenheit;
+                    }
+                });
             });
         });
     } else {
-        h1.textContent = "Location acess not granted"
+        h1.textContent = "Location access not granted";
+    }
+
+    function setIcons(icon, iconID) {
+        const skycons = new Skycons({"color": "white"});
+        const currentIcon = icon.replace("-", "_").toUpperCase();
+        skycons.play();
+        return skycons.set(iconID, Skycons[currentIcon]);
     }
 });
