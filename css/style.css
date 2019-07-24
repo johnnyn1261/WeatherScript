@@ -1,0 +1,40 @@
+* {
+    color: white;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+    font-family: sans-serif;
+}
+
+.location {
+    padding-top: 20%;
+}
+
+.location-timezone {
+    padding-top: 40px;
+}
+
+.degree {
+    font-size: 27px;
+}
+
+
+/* Responsiveness */
+@media (min-width: 1200px) {
+
+}
+  
+@media (max-width: 992px) {
+
+}
+  
+@media (max-width: 768px) {
+
+}
+  
+@media (max-width: 576px) {
+
+}
+  
