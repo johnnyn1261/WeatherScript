@@ -3,13 +3,15 @@
 }
 
 body {
-    height: 100vh;
     background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143));
+    /* background-color: aqua; */
     font-family: sans-serif;
+    width: auto;
+    height: auto;
 }
 
 .location {
-    padding-top: 20%;
+    padding-top: 10%;
 }
 
 .location-timezone {
@@ -20,21 +22,6 @@ body {
     font-size: 27px;
 }
 
-
-/* Responsiveness */
-@media (min-width: 1200px) {
-
+.week {
+    padding-top: 150px;
 }
-  
-@media (max-width: 992px) {
-
-}
-  
-@media (max-width: 768px) {
-
-}
-  
-@media (max-width: 576px) {
-
-}
-  

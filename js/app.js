@@ -40,6 +40,10 @@ window.addEventListener('load', () => {
                         temperatureDegree.textContent = farenheit;
                     }
                 });
+
+                setDay1(data);
+                setDay2(data);
+                setDay3(data);
             });
         });
     } else {
@@ -52,5 +56,86 @@ window.addEventListener('load', () => {
         skycons.play();
         console.log(currentIcon);
         return skycons.set(iconID, Skycons[currentIcon]);
+    }
+
+    function setDay1(data) {
+        const {apparentTemperatureHigh, summary, icon} = data.daily.data[0];
+        let temperatureDescription = document.querySelector("#day1 .temperature-description");
+        let temperatureDegree = document.querySelector("#day1 .temperature-degree");
+        let temperatureSection = document.querySelector("#day1 .temperature");
+        let temperatureUnit = document.querySelector("#day1 .degree");
+
+        // Set DOM elements from API
+        let farenheit = Math.round(apparentTemperatureHigh * 10) / 10;
+        temperatureDegree.textContent = farenheit;
+        temperatureDescription.textContent = summary;
+        locationTimezeone.textContent = data.timezone.replace("_", "");
+
+        setIcons(icon, document.querySelector("#day1 .icon"));
+
+        let celsius = (apparentTemperatureHigh - 32) * (5/9);
+        temperatureSection.addEventListener("click", () => {
+            if (temperatureUnit.textContent === "F") {
+                temperatureUnit.textContent = "C";
+                temperatureDegree.textContent = Math.round(celsius * 10) / 10;
+            } else {
+                temperatureUnit.textContent = "F";
+                temperatureDegree.textContent = farenheit;
+            }
+        });
+    }
+
+    function setDay2(data) {
+        const {apparentTemperatureHigh, summary, icon} = data.daily.data[1];
+        let temperatureDescription = document.querySelector("#day2 .temperature-description");
+        let temperatureDegree = document.querySelector("#day2 .temperature-degree");
+        let temperatureSection = document.querySelector("#day2 .temperature");
+        let temperatureUnit = document.querySelector("#day2 .degree");
+
+        // Set DOM elements from API
+        let farenheit = Math.round(apparentTemperatureHigh * 10) / 10;
+        temperatureDegree.textContent = farenheit;
+        temperatureDescription.textContent = summary;
+        locationTimezeone.textContent = data.timezone.replace("_", "");
+
+        setIcons(icon, document.querySelector("#day2 .icon"));
+
+        let celsius = (apparentTemperatureHigh - 32) * (5/9);
+        temperatureSection.addEventListener("click", () => {
+            if (temperatureUnit.textContent === "F") {
+                temperatureUnit.textContent = "C";
+                temperatureDegree.textContent = Math.round(celsius * 10) / 10;
+            } else {
+                temperatureUnit.textContent = "F";
+                temperatureDegree.textContent = farenheit;
+            }
+        });
+    }
+
+    function setDay3(data) {
+        const {apparentTemperatureHigh, summary, icon} = data.daily.data[2];
+        let temperatureDescription = document.querySelector("#day3 .temperature-description");
+        let temperatureDegree = document.querySelector("#day3 .temperature-degree");
+        let temperatureSection = document.querySelector("#day3 .temperature");
+        let temperatureUnit = document.querySelector("#day3 .degree");
+
+        // Set DOM elements from API
+        let farenheit = Math.round(apparentTemperatureHigh * 10) / 10;
+        temperatureDegree.textContent = farenheit;
+        temperatureDescription.textContent = summary;
+        locationTimezeone.textContent = data.timezone.replace("_", "");
+
+        setIcons(icon, document.querySelector("#day3 .icon"));
+
+        let celsius = (apparentTemperatureHigh - 32) * (5/9);
+        temperatureSection.addEventListener("click", () => {
+            if (temperatureUnit.textContent === "F") {
+                temperatureUnit.textContent = "C";
+                temperatureDegree.textContent = Math.round(celsius * 10) / 10;
+            } else {
+                temperatureUnit.textContent = "F";
+                temperatureDegree.textContent = farenheit;
+            }
+        });
     }
 });
